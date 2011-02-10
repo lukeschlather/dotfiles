@@ -11,7 +11,7 @@ do
 	    cp -r ~/${file} ~/${file}.`date +'%Y%d%m'`
 	fi
     fi
-    rm ~/${file}
+    rm -r ~/${file}
     ln -s ~/dotfiles/primary/${file} ~/${file}
 done
 

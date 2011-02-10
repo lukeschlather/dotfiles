@@ -1,7 +1,6 @@
-;;Luke Schlather's .emacs file
+;;Luke jf Schlather's .emacs file
 ;;Version 1.2.2
 ;;October 26, 2007
-;;Got rid of splash screen.
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
@@ -201,7 +200,7 @@ all google commands."
 
 ;; Join these channels at startup.
 (setq rcirc-startup-channels-alist
-      '(("\\.freenode\\.net$" "#emacs" "#fluxbox" )))
+      '(("\\.freenode\\.net$" "#emacs" "#ubuntu")))
 
 ;;; This is the binary name of my scheme implementation
 (setq scheme-program-name "mzscheme")
