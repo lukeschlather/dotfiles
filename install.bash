@@ -7,8 +7,8 @@ do
     # make a backup if the file/directory already exists
     if [[ ! -h ~/${file} ]] ; then
 	if [[ -f ~/${file} ]] || [[ -d ~/${file} ]] ; then
-	    echo cp -r ~/${file} ~/${file}.`date +'%Y%d%m'`
-	    cp -r ~/${file} ~/${file}.`date +'%Y%d%m'`
+	    echo cp -r ~/${file} ~/${file}.`date +'%Y%m%d'`
+	    cp -r ~/${file} ~/${file}.`date +'%Y%m%d'`
 	fi
     fi
     rm -r ~/${file}

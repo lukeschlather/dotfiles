@@ -121,9 +121,9 @@ function sftp {
 }
 
 function yyyymmdd {
-    date +'%Y%d%m'
+    date +'%Y%m%d'
 }
 
 function yyyy-mm-dd_hh-mm-ss {
-    date +'%Y-%d-%m_%H-%M-%S'
+    date +'%Y-%m-%d_%H-%M-%S'
 }
