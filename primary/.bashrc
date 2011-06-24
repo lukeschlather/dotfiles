@@ -119,6 +119,11 @@ function sftp {
     echo     /usr/bin/ssh $*
     /usr/bin/sftp $*
 }
+function telnet {
+    settitle telnet $*
+    echo     /usr/bin/telnet $*
+    /usr/bin/telnet $*
+}
 
 function yyyymmdd {
     date +'%Y%m%d'
