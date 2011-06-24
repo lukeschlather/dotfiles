@@ -105,8 +105,6 @@
 (autoload 'longlines-mode "longlines.elc" "Minor mode for editing long lines." t)
 (add-hook 'text-mode-hook 'longlines-mode)
 
-
-
 (defun wc nil "Count words in buffer" (interactive)
   (shell-command-on-region (point-min) (point-max) "wc -w"))
 (defun word-count wc)
