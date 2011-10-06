@@ -203,6 +203,7 @@ all google commands."
 
 ;;; This is the binary name of my scheme implementation
 (setq scheme-program-name "mzscheme")
+(setq sql-sqlite-program "/usr/bin/sqlite3")
 
 (put 'upcase-region 'disabled nil)
 
