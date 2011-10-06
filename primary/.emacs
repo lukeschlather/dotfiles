@@ -149,7 +149,8 @@ all google commands."
 
 
 (setq inhibit-splash-screen 1)
-
+(setq initial-scratch-message nil)
+(setq initial-major-mode 'fundamental-mode)
 
 ;; ;; store count in variable
 ;; (defvar word-count
