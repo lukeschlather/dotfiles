@@ -105,6 +105,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+function nth-commits {
+    echo $(git log | grep -P 'commit\s+[[:xdigit:]]{40}$' | sed s/commit// | sed -n "${1}p;${2}p;")
+}
+
 function settitle {
     echo -en "\e]0; $* \a"
 }
