@@ -102,8 +102,7 @@
 ;; WORD PROCESSING
 
 ;; load word-wrapper (doesen't the file with newlines.)
-(autoload 'longlines-mode "longlines.elc" "Minor mode for editing long lines." t)
-(add-hook 'text-mode-hook 'longlines-mode)
+(add-hook 'text-mode-hook 'visual-line-mode)
 
 (defun wc nil "Count words in buffer" (interactive)
   (shell-command-on-region (point-min) (point-max) "wc -w"))
