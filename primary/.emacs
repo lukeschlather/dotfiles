@@ -95,7 +95,6 @@
   )
 
 ;;fix it so that c++ mode is default for .h files.
-
 (append '(("\\.h\\'" . c++-mode)
 	  auto-mode-alist))
 
@@ -223,4 +222,8 @@ all google commands."
 (append '(("\\.frm\\'" . visual-basic-mode)
    auto-mode-alist))
 ;(load-file "/home/code/golang/misc/emacs/go-mode.el")
+
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 2)
+(setq js-indent-level 2)
 
