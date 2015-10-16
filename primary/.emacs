@@ -2,6 +2,8 @@
 ;;Version 1.2.2
 ;;October 26, 2007
 
+(add-to-list 'load-path "~/.autoinsert/")
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
   ;; Your init file should contain only one such instance.
@@ -226,4 +228,19 @@ all google commands."
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 2)
 (setq js-indent-level 2)
+(setq ruby-deep-indent-paren nil)
 
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+
+
+(defun my-go-mode-hook ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (setq tab-width 2 standard-indent 2 indent-tabs-mode nil))
+(add-hook 'go-mode-hook 'my-go-mode-hook) 
