@@ -109,9 +109,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-function nth-commits {
-    echo $(git log | grep -P 'commit\s+[[:xdigit:]]{40}$' | sed s/commit// | sed -n "${1}p;${2}p;")
-}
+git config --global core.excludesfile '~/.gitignore'
+
 
 function settitle {
     echo -en "\e]0; $* \a"
@@ -140,3 +139,7 @@ function yyyymmdd {
 function yyyy-mm-dd_hh-mm-ss {
     date +'%Y-%m-%d_%H-%M-%S'
 }
+
+alias feh='feh -FZ'
+export PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
