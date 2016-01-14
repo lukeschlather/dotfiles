@@ -228,6 +228,7 @@ all google commands."
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 2)
 (setq js-indent-level 2)
+(setq css-indent-offset 2)
 (setq ruby-deep-indent-paren nil)
 
 
