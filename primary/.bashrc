@@ -140,6 +140,9 @@ function yyyy-mm-dd_hh-mm-ss {
     date +'%Y-%m-%d_%H-%M-%S'
 }
 
-alias feh='feh -FZ'
+alias feh='feh -d -F -Z '
 export PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+source ~/dotfiles/primary/local/*
+

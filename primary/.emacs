@@ -104,6 +104,7 @@
 
 ;; load word-wrapper (doesen't the file with newlines.)
 (add-hook 'text-mode-hook 'visual-line-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 
 (defun wc nil "Count words in buffer" (interactive)
   (shell-command-on-region (point-min) (point-max) "wc -w"))
@@ -244,7 +245,6 @@ all google commands."
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-
 
 (defun my-go-mode-hook ()
   (add-hook 'before-save-hook 'gofmt-before-save)
