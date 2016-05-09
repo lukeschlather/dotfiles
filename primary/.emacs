@@ -1,8 +1,19 @@
 ;;Luke jf Schlather's .emacs file
-;;Version 1.2.2
-;;October 26, 2007
+
+;; using
+;; http://repo.or.cz/w/emacs.git/blob_plain/ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09:/lisp/emacs-lisp/package.el
+;; for emacs 23
 
 (add-to-list 'load-path "~/.autoinsert/")
+;; http://melpa.org/#/getting-started
+(require 'package) 
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize) 
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
@@ -236,6 +247,11 @@ all google commands."
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
+(require 'haml-mode)
+(add-to-list 'auto-mode-alist '("\\.haml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.slim\\'" . web-mode))
+
+
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
@@ -246,7 +262,9 @@ all google commands."
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 
+
 (defun my-go-mode-hook ()
   (add-hook 'before-save-hook 'gofmt-before-save)
   (setq tab-width 2 standard-indent 2 indent-tabs-mode nil))
 (add-hook 'go-mode-hook 'my-go-mode-hook) 
+(set-face-attribute 'default nil :height 140)
