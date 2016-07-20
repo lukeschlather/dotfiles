@@ -268,3 +268,5 @@ all google commands."
   (setq tab-width 2 standard-indent 2 indent-tabs-mode nil))
 (add-hook 'go-mode-hook 'my-go-mode-hook) 
 (set-face-attribute 'default nil :height 140)
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
