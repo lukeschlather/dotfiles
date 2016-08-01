@@ -270,3 +270,9 @@ all google commands."
 (set-face-attribute 'default nil :height 140)
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
+
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+

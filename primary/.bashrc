@@ -142,7 +142,10 @@ function yyyy-mm-dd_hh-mm-ss {
 
 alias feh='feh -d -F -Z '
 export PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
+export PATH="$PATH:/home/project/rust/bin"
 eval "$(rbenv init -)"
 
 source ~/dotfiles/primary/local/*
+
+export WORKON_HOME=~/.pyvirtualenv
 
