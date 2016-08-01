@@ -147,5 +147,8 @@ eval "$(rbenv init -)"
 
 source ~/dotfiles/primary/local/*
 
+
 export WORKON_HOME=~/.pyvirtualenv
+
+HISTTIMEFORMAT="%d/%m/%y %T "
 
