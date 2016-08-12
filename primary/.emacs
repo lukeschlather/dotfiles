@@ -272,7 +272,11 @@ all google commands."
 (setq uniquify-buffer-name-style 'forward)
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+                         
 (package-initialize)
 
