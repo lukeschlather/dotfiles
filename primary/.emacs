@@ -1,19 +1,28 @@
 ;;Luke jf Schlather's .emacs file
 
-;; using
-;; http://repo.or.cz/w/emacs.git/blob_plain/ba08b24186711eaeb3748f3d1f23e2c2d9ed0d09:/lisp/emacs-lisp/package.el
-;; for emacs 23
 
 (add-to-list 'load-path "~/.autoinsert/")
 ;; http://melpa.org/#/getting-started
 (require 'package) 
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+                         
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize) 
 
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(eval-when-compile
+  (require 'use-package))
+(setq use-package-always-ensure t)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
@@ -127,27 +136,9 @@
 (setq-default spell-command "aspell")
 (setq-default ispell-program-name "aspell")
 (setq-default ispell-extra-args '("--reverse"))
-;;aspell end
 
-
-;;OLAF SPECIFIC - DELETE WHEN THEY GO OUT OF SCOPE
-(setq lpr-switches "- P mohn")
-
-;;END OLAF
-
-;;the sto-entry stuff - really nice tool
+;; 
 (load-file "~/.autoinsert/sto-entry.el")
-
-;;do a yubnub search
-(defun yubnub (command)
-  "Use `browse-url' to submits a command to yubnub and opens
-result in an external browser defined in `browse-url-browser-function'.
-
-To get started  `M-x yubnub <RET> ls <RET>' will return a list of 
-all yubnub commands."
-  (interactive "sCommand:")
-  (browse-url 
-   (concat "http://yubnub.org/parser/parse?command=" command)))
 
 ;;do a google search
 (defun google (command)
@@ -226,41 +217,36 @@ all google commands."
 (tool-bar-mode -1)
 (put 'scroll-left 'disabled nil)
 
-
-;; Code environments
-
-(load-file "~/.autoinsert/groovy-mode.el")
-(load-file "~/.autoinsert/markdown-mode.el")
-(append '(("\\.markdown\\'" . markdown-mode)
-   auto-mode-alist))
-(append '(("\\.frm\\'" . visual-basic-mode)
-   auto-mode-alist))
-;(load-file "/home/code/golang/misc/emacs/go-mode.el")
-
 (setq-default indent-tabs-mode nil)
 (setq-default c-basic-offset 2)
 (setq js-indent-level 2)
 (setq css-indent-offset 2)
 (setq ruby-deep-indent-paren nil)
 
+(use-package go-mode)
+(use-package markdown-mode)
+(use-package yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+)
 
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(use-package haml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.haml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.slim\\'" . web-mode))
+)
 
-(require 'haml-mode)
-(add-to-list 'auto-mode-alist '("\\.haml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.slim\\'" . web-mode))
-
-
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+)
 
 
 (defun my-go-mode-hook ()
@@ -268,15 +254,10 @@ all google commands."
   (setq tab-width 2 standard-indent 2 indent-tabs-mode nil))
 (add-hook 'go-mode-hook 'my-go-mode-hook) 
 (set-face-attribute 'default nil :height 140)
+
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
-                         
-(package-initialize)
+(use-package flycheck)
 
