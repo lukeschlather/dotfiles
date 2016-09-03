@@ -1,0 +1,19 @@
+[ui]
+username = Luke Schlather <luke@energysavvy.com>
+ignore = ~/.config/hgignore
+merge = emacs
+
+
+[extensions]
+color=
+pager=
+rebase= 
+transplant=
+strip=
+shelve=
+
+[pager]
+pager = LESS='FRX' less -d
+
+[merge-tools]
+emacs.args = -q --eval "(ediff-merge-with-ancestor \""$local"\" \""$other"\" \""$base"\" nil \""$output"\")"
