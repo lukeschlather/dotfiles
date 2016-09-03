@@ -145,7 +145,10 @@ export PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
 export PATH="$PATH:/home/project/rust/bin"
 eval "$(rbenv init -)"
 
-source ~/dotfiles/primary/local/*
+for file in ~/dotfiles/primary/local/*.bash
+do
+    source $file
+done
 
 
 export WORKON_HOME=~/.pyvirtualenv
