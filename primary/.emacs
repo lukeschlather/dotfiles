@@ -38,7 +38,10 @@
   ;; Your init file should contain only one such instance.
  )
 
-;;Set C-x r to be reindent whole buffer.
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
 
 ;; Provide access to window manager clipboard.
 (define-key global-map  (kbd "C-S-v") 'clipboard-yank)
