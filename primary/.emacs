@@ -262,5 +262,10 @@ all google commands."
 (setq uniquify-buffer-name-style 'forward)
 
 
-(use-package flycheck)
-
+(use-package flycheck
+  :config
+  (add-hook 'python-mode-hook 'flycheck-mode)
+  (add-hook 'python-mode-hook (lambda () 
+    (flycheck-select-checker 'python-flake8)
+  ))
+)
