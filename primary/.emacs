@@ -1,18 +1,11 @@
 ;;Luke jf Schlather's .emacs file
-
-
 (add-to-list 'load-path "~/.autoinsert/")
 ;; http://melpa.org/#/getting-started
 (require 'package) 
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
-
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
-(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
-                         
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
@@ -156,29 +149,7 @@ all google commands."
 
 (setq inhibit-splash-screen 1)
 (setq initial-scratch-message nil)
-(setq initial-major-mode 'fundamental-mode)
-
-;; ;; store count in variable
-;; (defvar word-count
-;;   nil
-;;   "*Current value returned from `count-words-paragraph' function.")
-
-;; ;; only setup timer once
-;; (unless word-count
-;;   ;; seed word-count
-;;   (setq word-count "0")
-;;   ;; create timer to keep word-count updated
-;;   (run-with-idle-timer 0.5 t #'(lambda ()
-;;                                  (setq word-count (number-
-;; to-string (wc))))))
-
-;; ;; add count words paragraph the mode line
-;; (unless (memq 'word-count (nth 8 mode-line-format))
-;;   (push (cons '#(" w:" 0 3) (help-echo "mouse-1: select (drag to
-;; resize), mouse-2 = C-x 1, mouse-3 = C-x 0"))
-;;               '(word-count))
-;;         (nthcdr 8 mode-line-format)))
-;; (set-default 'mode-line-format mode-line-format) 
+(setq initial-major-mode 'text-mode)
 
 (put 'downcase-region 'disabled nil)
 
