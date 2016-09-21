@@ -118,6 +118,7 @@
 
 ;; WORD PROCESSING
 
+(setq-default fill-column 80)
 ;; load word-wrapper (doesen't the file with newlines.)
 (add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
