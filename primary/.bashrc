@@ -141,17 +141,24 @@ function yyyy-mm-dd_hh-mm-ss {
 }
 
 alias feh='feh -d -F -Z '
-export PATH="$HOME/bin:$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/home/project/rust/bin"
-eval "$(rbenv init -)"
+
+if [ -d ~/.rbenv ]; then
+   export PATH="$HOME/.rbenv/bin:$PATH"
+   eval "$(rbenv init -)"
+fi
+
+if [ -d ~/.pyenv ]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 for file in ~/dotfiles/primary/local/*.bash
 do
     source $file
 done
-
-
-export WORKON_HOME=~/.pyvirtualenv
 
 HISTTIMEFORMAT="%d/%m/%y %T "
 
