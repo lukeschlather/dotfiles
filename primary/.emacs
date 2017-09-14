@@ -44,6 +44,7 @@
      (lambda ()
 (define-key python-mode-map (kbd "C-c [") 'python-shift-left)
 (define-key python-mode-map (kbd "C-c ]") 'python-shift-right)
+(setq python-fill-docstring-style 'django)
 ))
 ;; M-x apropos ftw
 (define-key global-map  (kbd "C-h") 'backward-kill-word)
@@ -189,7 +190,9 @@ all google commands."
 (menu-bar-mode -1)
 ;;Disable scroll bar.
 ;;(toggle-scroll-bar -1)
-(tool-bar-mode -1)
+(if (display-graphic-p)
+    (tool-bar-mode -1)
+)
 (put 'scroll-left 'disabled nil)
 
 (setq-default indent-tabs-mode nil)
