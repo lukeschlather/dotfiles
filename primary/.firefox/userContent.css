@@ -36,5 +36,9 @@
 
 
 @-moz-document domain(nytimes.com) {
-.masthead {visibility: hidden}
+.masthead {visibility: hidden !important}
+}
+
+@-moz-document domain(nytimes.com) {
+#masthead {visibility: hidden !important}
 }
