@@ -60,8 +60,12 @@ esac
 # fi
 # unset color_prompt force_color_prompt
 
-
-PS1='_________________________________________________________\n\u@\h : \w \n \t \n$ '
+if [ -f /etc/ec2_version ]; then
+    cloudname=EC2
+else
+    cloudname=''
+fi
+PS1="_________________________________________________________\n\u@\h$cloudname : \w \n \t \n$ "
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
