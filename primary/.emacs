@@ -1,4 +1,6 @@
 ;;Luke jf Schlather's .emacs file
+(when window-system (set-frame-size (selected-frame) 80 24))
+
 (add-to-list 'load-path "~/.autoinsert/")
 ;; http://melpa.org/#/getting-started
 (require 'package) 
@@ -12,14 +14,17 @@
 (package-initialize) 
 
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
   (require 'use-package))
 (setq use-package-always-ensure t)
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(case-fold-search t)
  '(current-language-environment "Latin-1")
  '(default-input-method "latin-1-prefix")
@@ -27,8 +32,10 @@
  '(show-paren-mode t nil (paren)))
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (prefer-coding-system 'utf-8)
@@ -41,11 +48,11 @@
 (define-key global-map  (kbd "C-S-c") 'clipboard-kill-ring-save)
 
 (add-hook 'python-mode-hook
-     (lambda ()
-(define-key python-mode-map (kbd "C-c [") 'python-shift-left)
-(define-key python-mode-map (kbd "C-c ]") 'python-shift-right)
-(setq python-fill-docstring-style 'django)
-))
+          (lambda ()
+            (define-key python-mode-map (kbd "C-c [") 'python-shift-left)
+            (define-key python-mode-map (kbd "C-c ]") 'python-shift-right)
+            (setq python-fill-docstring-style 'django)
+            ))
 ;; M-x apropos ftw
 (define-key global-map  (kbd "C-h") 'backward-kill-word)
 
@@ -66,8 +73,8 @@
 	("\\.java$" . ["insert.java" auto-update-code])
 	("\\.markdown$" . ["insert.markdown" auto-update-code])
 	("\\.html$" . ["insert.html" auto-update-code])
-			  )
-)
+        )
+      )
 
 
 (setq auto-insert-directory "~/.autoinsert/")
@@ -99,7 +106,7 @@
       (save-restriction
 	(narrow-to-region (match-beginning 0) (match-end 0))
 	(replace-match (concat "_"  (upcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))) "_")) t
-		       
+        
 	))
     )
   (save-excursion
@@ -125,7 +132,7 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 
 (defun wc nil "Count words in buffer" (interactive)
-  (shell-command-on-region (point-min) (point-max) "wc -w"))
+       (shell-command-on-region (point-min) (point-max) "wc -w"))
 (defun word-count wc)
 
 ;;WORD PROCESSING
@@ -156,7 +163,7 @@ all google commands."
 (put 'downcase-region 'disabled nil)
 
 ;instead of beeping, emacs flashes
- (setq visible-bell 1)
+(setq visible-bell 1)
 ;Now some people find the flashing annoying. To turn the alarm totally off, you can use this:
 ; (setq ring-bell-function 'ignore)
 
@@ -168,12 +175,12 @@ all google commands."
 ;;html stuff
 
 (defun downcase-html-tags () (interactive)
-  (save-excursion
-    (beginning-of-buffer)
-    (while (re-search-forward "</?\\([a-zA-Z]+\\)" nil t)
-      (downcase-region (match-beginning 1) (match-end 1)))
-    )
-  )
+       (save-excursion
+         (beginning-of-buffer)
+         (while (re-search-forward "</?\\([a-zA-Z]+\\)" nil t)
+           (downcase-region (match-beginning 1) (match-end 1)))
+         )
+       )
 
 
 ;; Join these channels at startup.
@@ -192,7 +199,7 @@ all google commands."
 ;;(toggle-scroll-bar -1)
 (if (display-graphic-p)
     (tool-bar-mode -1)
-)
+  )
 (put 'scroll-left 'disabled nil)
 
 (setq-default indent-tabs-mode nil)
@@ -206,13 +213,13 @@ all google commands."
 (use-package yaml-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-)
+  )
 
 (use-package haml-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.haml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.slim\\'" . web-mode))
-)
+  )
 
 (use-package web-mode
   :config
@@ -224,7 +231,7 @@ all google commands."
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-)
+  )
 
 
 (defun my-go-mode-hook ()
@@ -236,11 +243,19 @@ all google commands."
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+(if (file-exists-p "~/.pyenv/shims/python3")
+    (lambda ()
+      (use-package flycheck
+        :config
+        (add-hook 'python-mode-hook 'flycheck-mode)
+        (add-hook 'python-mode-hook (lambda ()
+                                      (flycheck-select-checker 'python-flake8)
+                                      ))
+        )
+      (setq 'flycheck-python-flake8-executable "~/.pyenv/shims/python3")
+      (setq 'flycheck-python-pycompile-executable "~/.pyenv/shims/python3")
+      (setq 'flycheck-python-pylint-executable "~/.pyenv/shims/python3")
+      )
+  )
 
-(use-package flycheck
-  :config
-  (add-hook 'python-mode-hook 'flycheck-mode)
-  (add-hook 'python-mode-hook (lambda () 
-    (flycheck-select-checker 'python-flake8)
-  ))
-)
+(when window-system (set-frame-size (selected-frame) 80 24))
