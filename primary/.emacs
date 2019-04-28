@@ -29,6 +29,9 @@
  '(current-language-environment "Latin-1")
  '(default-input-method "latin-1-prefix")
  '(global-font-lock-mode t nil (font-lock))
+ '(package-selected-packages
+   (quote
+    (web-mode haml-mode yaml-mode markdown-mode go-mode use-package)))
  '(show-paren-mode t nil (paren)))
 
 (custom-set-faces
@@ -131,9 +134,8 @@
 (add-hook 'text-mode-hook 'visual-line-mode)
 (add-hook 'text-mode-hook 'flyspell-mode)
 
-(defun wc nil "Count words in buffer" (interactive)
+(defun word-count nil "Count words in buffer" (interactive)
        (shell-command-on-region (point-min) (point-max) "wc -w"))
-(defun word-count wc)
 
 ;;WORD PROCESSING
 
