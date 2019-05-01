@@ -50,6 +50,10 @@
 (define-key global-map  (kbd "C-S-v") 'clipboard-yank)
 (define-key global-map  (kbd "C-S-c") 'clipboard-kill-ring-save)
 
+;; This is a Windows system hotkey that causes Emacs to error when it is used
+(global-set-key (kbd "<C-lwindow>") 'ignore)
+
+
 (add-hook 'python-mode-hook
           (lambda ()
             (define-key python-mode-map (kbd "C-c [") 'python-shift-left)
