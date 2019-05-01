@@ -31,7 +31,7 @@
  '(global-font-lock-mode t nil (font-lock))
  '(package-selected-packages
    (quote
-    (web-mode haml-mode yaml-mode markdown-mode go-mode use-package)))
+    (powershell powershell-mode web-mode haml-mode yaml-mode markdown-mode go-mode use-package)))
  '(show-paren-mode t nil (paren)))
 
 (custom-set-faces
@@ -261,3 +261,5 @@ all google commands."
   )
 
 (when window-system (set-frame-size (selected-frame) 80 24))
+
+(use-package powershell)
