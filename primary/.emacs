@@ -31,7 +31,19 @@
  '(global-font-lock-mode t nil (font-lock))
  '(package-selected-packages
    (quote
-    (powershell powershell-mode web-mode haml-mode yaml-mode markdown-mode go-mode use-package)))
+    (typescript-mode
+     csharp-mode
+     csproj-mode
+     csharp
+     powershell
+     powershell-mode
+     web-mode
+     haml-mode
+     yaml-mode
+     markdown-mode
+     go-mode
+     use-package
+     )))
  '(show-paren-mode t nil (paren)))
 
 (custom-set-faces
@@ -164,7 +176,7 @@ all google commands."
 
 (setq inhibit-splash-screen 1)
 (setq initial-scratch-message nil)
-(setq initial-major-mode 'text-mode)
+(setq initial-major-mode 'fundamental-mode)
 
 (put 'downcase-region 'disabled nil)
 
@@ -239,7 +251,6 @@ all google commands."
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   )
 
-
 (defun my-go-mode-hook ()
   (add-hook 'before-save-hook 'gofmt-before-save)
   (setq tab-width 2 standard-indent 2 indent-tabs-mode nil))
@@ -267,3 +278,6 @@ all google commands."
 (when window-system (set-frame-size (selected-frame) 80 24))
 
 (use-package powershell)
+(use-package csharp-mode)
+(use-package csproj-mode)
+(use-package typescript-mode)
