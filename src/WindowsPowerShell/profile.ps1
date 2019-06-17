@@ -11,3 +11,20 @@ if ($host.Name -eq 'ConsoleHost')
 }
 
 New-Alias which get-command
+
+# function cd-Visual-Studio () {
+#     cd (& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -property InstallationPath)
+# }
+
+
+New-Alias ildasm "C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6.1 Tools\ildasm.exe"
+
+function prompt() {
+    (
+        "_____________________________________________________________`n" +
+        $env:username + '@' + $env:COMPUTERNAME + ' : ' +
+        "$($executionContext.SessionState.Path.CurrentLocation)" + "`n" +
+        " $(Get-Date -UFormat '+%Y-%m-%d %H:%M:%S')`n" +
+        "$('> ' * ($nestedPromptLevel + 1))"
+    );
+}
