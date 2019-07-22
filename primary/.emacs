@@ -31,7 +31,9 @@
  '(global-font-lock-mode t nil (font-lock))
  '(package-selected-packages
    (quote
-    (typescript-mode
+    (
+     ahk-mode
+     typescript-mode
      csharp-mode
      csproj-mode
      csharp
@@ -281,3 +283,4 @@ all google commands."
 (use-package csharp-mode)
 (use-package csproj-mode)
 (use-package typescript-mode)
+(use-package ahk-mode)
