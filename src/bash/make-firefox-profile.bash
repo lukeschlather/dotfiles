@@ -20,3 +20,6 @@ mkdir -p ~/.local/share/applications/icons/
 echo 'Need to configure ~/.local/share/applications/icons/strivr.png'
 
 mkdir -p $profile_directory
+
+# Find a way to make these automatic
+# browser.ctrlTab.recentlyUsedOrder = False
