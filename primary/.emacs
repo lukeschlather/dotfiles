@@ -1,4 +1,5 @@
 ;;Luke jf Schlather's .emacs file
+
 (when window-system (set-frame-size (selected-frame) 80 24))
 
 (add-to-list 'load-path "~/.autoinsert/")
@@ -6,7 +7,7 @@
 (require 'package) 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives '("elpa" . "http://tromey.com/elpa/") t)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -31,7 +32,7 @@
  '(global-font-lock-mode t nil (font-lock))
  '(package-selected-packages
    (quote
-    (
+    (terraform-mode
      ahk-mode
      typescript-mode
      csharp-mode
@@ -44,8 +45,7 @@
      yaml-mode
      markdown-mode
      go-mode
-     use-package
-     )))
+     use-package)))
  '(show-paren-mode t nil (paren)))
 
 (custom-set-faces
@@ -163,7 +163,7 @@
 (setq-default ispell-extra-args '("--reverse"))
 
 ;; 
-(load-file "~/.autoinsert/sto-entry.el")
+;;(load-file "~/.autoinsert/sto-entry.el")
 
 ;;do a google search
 (defun google (command)
@@ -284,3 +284,11 @@ all google commands."
 (use-package csproj-mode)
 (use-package typescript-mode)
 (use-package ahk-mode)
+
+(defun unfill-paragraph (&optional region)
+  "Takes a multi-line paragraph and makes it into a single line of text."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+        ;; This would override `fill-column' if it's an integer.
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
