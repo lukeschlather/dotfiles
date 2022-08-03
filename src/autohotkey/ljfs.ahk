@@ -13,7 +13,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Left::return
 #Right::return
 
-#t::Run pwsh.exe
+#e::Run runemacs.exe
+#t::Run pwsh.exe -WorkingDirectory ~
 #s::Run "C:\Program Files (x86)\Steam\Steam.exe" steam://open/friends/
 
 ; Use window spy (right click on autohotkey icon)
