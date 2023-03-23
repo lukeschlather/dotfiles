@@ -9,6 +9,7 @@ if ($host.Name -eq 'ConsoleHost')
     Set-PSReadLineKeyHandler -Key 'Ctrl+LeftArrow' -Function BackwardWord
     Set-PSReadLineKeyHandler -Key 'Ctrl+RightArrow' -Function ForwardWord
     Set-PSReadLineOption -AddToHistoryHandler $null
+    Set-PSReadlineOption -BellStyle None 
 }
 
 New-Alias which get-command
